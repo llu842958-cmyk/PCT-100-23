@@ -2,67 +2,86 @@
 #include "key.h"
 #include "relay.h"
 #include "exti.h"
+#include "light.h"
+#include "temp.h"
+#include "display.h"
+#include "wifi_manager.h"
+#include "rgb_led.h"
+#include "mqtt_manager.h"
 
 void setup()
 {
     Serial.begin(115200);
-
-    delay(1000);
+    Serial.println("系统启动");
 
     key_init();
-
     relay_init();
-
     exti_init();
+    display_init();
+    light_init();
+    temp_init();
+    rgb_led_init();
+    wifi_init();
+    mqtt_init();
 
-    Serial.println("System Start");
-
-    Serial.println("AUTO MODE");
+    rgb_led_update(wifi_connected, mqtt_connected, false, false);
 }
 
 void loop()
 {
-    // KEY2扫描
-    key2_scan();
+    wifi_loop();
+    mqtt_loop();
 
-    // KEY1总开关
-    bool key1_state =
-    digitalRead(key1_pin);
-
-    // KEY1关闭
-    if(!key1_state)
-    {
-        // 回到00
-        relay_mode = 0;
-
-        // 回到AUTO模式
-        auto_mode = true;
+    // 统一串口处理 — 一行只读一次，根据内容分发
+    if (Serial.available()) {
+        String s = Serial.readStringUntil('\n');
+        s.trim();
+        if (s.length() > 0) {
+            if (s.startsWith("mqtt")) {
+                mqtt_handle_command(s);
+            } else {
+                wifi_handle_command(s);
+            }
+        }
     }
 
-    // 更新继电器
-    relay_update(
-        key1_state,
-        relay_mode
-    );
+    // LED 状态 — 传入完整参数
+    static unsigned long led_timer = 0;
+    if (millis() - led_timer > 50) {
+        led_timer = millis();
+        bool lo = digitalRead(relay1_pin);
+        bool fo = digitalRead(relay2_pin);
+        rgb_led_update(wifi_connected, mqtt_connected, lo, fo);
+    }
 
-    // ===== 模式打印 =====
-    static bool last_auto_mode =
-    auto_mode;
+    key2_scan();
+    bool k1 = digitalRead(key1_pin);
 
-    if(last_auto_mode != auto_mode)
-    {
-        last_auto_mode = auto_mode;
-
-        if(auto_mode)
-        {
-            Serial.println(
-            "AUTO MODE");
+    if (!k1) {
+        relay_mode = 0;
+        auto_mode  = true;
+        temp_reset();
+        relay_all_off();
+    } else {
+        if (auto_mode) {
+            light_update();
+            temp_update();
+        } else {
+            relay_update(k1, relay_mode);
         }
-        else
-        {
-            Serial.println(
-            "MANUAL MODE");
-        }
+    }
+
+    static bool last_auto = auto_mode;
+    if (last_auto != auto_mode) {
+        last_auto = auto_mode;
+        Serial.print("[模式] ");
+        Serial.println(auto_mode ? "自动" : "手动");
+    }
+
+    static unsigned long ts = 0;
+    if (millis() - ts > 1000) {
+        ts = millis();
+        display_update(k1, wifi_connected, wifi_ip, mqtt_ip_global, mqtt_connected);
     }
 
     delay(10);

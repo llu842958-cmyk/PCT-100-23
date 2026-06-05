@@ -57,3 +57,18 @@ void relay_update(bool master_state,
             break;
     }
 }
+void relay_all_off()
+{
+    digitalWrite(relay1_pin, LOW);
+
+    digitalWrite(relay2_pin, LOW);
+}
+void Light_On()
+{
+    digitalWrite(relay1_pin, HIGH);
+}
+
+void Light_Off()
+{
+    digitalWrite(relay1_pin, LOW);
+}
