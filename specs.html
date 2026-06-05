@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>化工控制实训装置 - 技术规格</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html"><span>首页</span></a></li>
+                <li><a href="product.html"><span>产品说明书</span></a></li>
+                <li><a href="specs.html" class="active"><span>技术规格</span></a></li>
+                <li><a href="guide.html"><span>使用指南</span></a></li>
+            </ul>
+        </nav>
+
+        <div class="card">
+            <h1><i class="fas fa-ruler"></i> 技术规格</h1>
+            
+            <img src="https://neeko-copilot.bytedance.net/api/text2image?prompt=technical%20specifications%20document%20with%20circuit%20diagrams%20and%20component%20details%20professional&image_size=landscape_16_9" alt="技术规格" class="product-image">
+
+            <div class="specs-grid">
+                <div class="specs-card">
+                    <h4><i class="fas fa-microchip"></i> 主控模块</h4>
+                    <ul>
+                        <li><span>处理器</span><span>ESP32 双核 MCU</span></li>
+                        <li><span>主频</span><span>最高 240 MHz</span></li>
+                        <li><span>RAM</span><span>520 KB SRAM</span></li>
+                        <li><span>Flash</span><span>4 MB</span></li>
+                        <li><span>接口</span><span>UART、I2C、SPI、ADC</span></li>
+                    </ul>
+                </div>
+
+                <div class="specs-card">
+                    <h4><i class="fas fa-sun"></i> 光照传感器</h4>
+                    <ul>
+                        <li><span>型号</span><span>BH1750FVI</span></li>
+                        <li><span>检测范围</span><span>0 - 65535 lux</span></li>
+                        <li><span>测量精度</span><span>±5% FS</span></li>
+                        <li><span>分辨率</span><span>1 lux</span></li>
+                        <li><span>接口</span><span>I2C</span></li>
+                    </ul>
+                </div>
+
+                <div class="specs-card">
+                    <h4><i class="fas fa-thermometer-half"></i> 温度传感器</h4>
+                    <ul>
+                        <li><span>型号</span><span>DS18B20</span></li>
+                        <li><span>检测范围</span><span>-40°C ~ +85°C</span></li>
+                        <li><span>测量精度</span><span>±0.5°C</span></li>
+                        <li><span>分辨率</span><span>0.1°C</span></li>
+                        <li><span>接口</span><span>1-Wire</span></li>
+                    </ul>
+                </div>
+
+                <div class="specs-card">
+                    <h4><i class="fas fa-lightbulb"></i> LED灯模块</h4>
+                    <ul>
+                        <li><span>类型</span><span>高亮度白光LED</span></li>
+                        <li><span>功率</span><span>1W</span></li>
+                        <li><span>亮度</span><span>100 lm</span></li>
+                        <li><span>电压</span><span>3.3V</span></li>
+                        <li><span>控制</span><span>数字开关</span></li>
+                    </ul>
+                </div>
+
+                <div class="specs-card">
+                    <h4><i class="fas fa-wind"></i> 风扇模块</h4>
+                    <ul>
+                        <li><span>规格</span><span>40mm x 40mm x 10mm</span></li>
+                        <li><span>电压</span><span>5V DC</span></li>
+                        <li><span>转速</span><span>4500 RPM</span></li>
+                        <li><span>噪音</span><span>< 30 dB</span></li>
+                        <li><span>控制</span><span>继电器控制</span></li>
+                    </ul>
+                </div>
+
+                <div class="specs-card">
+                    <h4><i class="fas fa-display"></i> 显示模块</h4>
+                    <ul>
+                        <li><span>类型</span><span>OLED显示屏</span></li>
+                        <li><span>尺寸</span><span>0.96英寸</span></li>
+                        <li><span>分辨率</span><span>128 x 64像素</span></li>
+                        <li><span>颜色</span><span>单色（蓝/白）</span></li>
+                        <li><span>接口</span><span>I2C</span></li>
+                    </ul>
+                </div>
+
+                <div class="specs-card">
+                    <h4><i class="fas fa-wifi"></i> 网络模块</h4>
+                    <ul>
+                        <li><span>标准</span><span>IEEE 802.11 b/g/n</span></li>
+                        <li><span>频率</span><span>2.4 GHz</span></li>
+                        <li><span>速率</span><span>最高150 Mbps</span></li>
+                        <li><span>加密</span><span>WEP/WPA/WPA2/WPA3</span></li>
+                        <li><span>天线</span><span>板载PCB天线</span></li>
+                    </ul>
+                </div>
+
+                <div class="specs-card">
+                    <h4><i class="fas fa-battery-full"></i> 电源模块</h4>
+                    <ul>
+                        <li><span>输入电压</span><span>DC 5V - 12V</span></li>
+                        <li><span>输出电压</span><span>3.3V / 5V</span></li>
+                        <li><span>输出电流</span><span>最大2A</span></li>
+                        <li><span>保护</span><span>过流/短路保护</span></li>
+                    </ul>
+                </div>
+
+                <div class="specs-card">
+                    <h4><i class="fas fa-box"></i> 物理规格</h4>
+                    <ul>
+                        <li><span>尺寸</span><span>200mm x 150mm x 80mm</span></li>
+                        <li><span>材质</span><span>铝合金外壳</span></li>
+                        <li><span>重量</span><span>< 500g</span></li>
+                        <li><span>安装</span><span>桌面/壁挂</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2><i class="fas fa-thermometer-sun"></i> 环境参数</h2>
+            <div class="specs-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="specs-card">
+                    <ul>
+                        <li><span>工作温度</span><span>-10°C ~ +50°C</span></li>
+                        <li><span>存储温度</span><span>-20°C ~ +60°C</span></li>
+                        <li><span>相对湿度</span><span>10% ~ 90%</span></li>
+                        <li><span>工作海拔</span><span>< 2000m</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 化工控制实训装置 - 专业级工业控制教学平台</p>
+        </div>
+    </div>
+</body>
+</html>
